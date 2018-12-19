@@ -22,7 +22,9 @@
           		<td><?php echo $key->program_studi; ?></td>
           		<td><?php echo date('d M Y', strtotime($key->created_at) ); ?></td>
           		<td>
-          			Edit | Hapus
+              
+          		  <a href="<?php echo site_url('admin/mahasiswa/edit/'.$key->nim); ?>" class="btn btn-info btn-sm" > Edit</a> 
+                <a href="<?php echo site_url('admin/mahasiswa/hapus/'.$key->nim); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus data ?')"> Hapus</a>
         		</td>	
           	</tr>
           	<?php } ?>

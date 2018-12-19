@@ -31,27 +31,51 @@ class mahasiswa extends CI_Controller
 	}
 	public function proses_tambah()
 	{
-		$nim = $this->input->post('nim');
-		$nama_mahasiswa= $this->input->post('nama_mahasiswa');
-		$program_studi = $this->input->post('program_studi');
-
-		$objek = array(
-			'nim' => $nim,
-			'nama_mahasiswa' => $nama_mahasiswa,
-			'program_studi' => $program_studi
-		);
-		if ($this->mahasiswa_model->create($objek)) {
-			// echo "Berhasil";
-			$this->session->set_flashdata('info','Data Berhasil Disimpan !');
+		$obj = array(
+			'nim' => $this->input->post('nim'),
+			'nama_mahasiswa' => $this->input->post('nama_mahasiswa'),
+			'program_studi' =>$this->input->post('nama_mahasiswa'),
+			);
+		$this->mahasiswa_model->create($obj);
+		// if ($this->mahasiswa_model->create($obj)) {
+		// 	// echo "Berhasil";
+		// 	$this->session->set_flashdata('info','Data Berhasil Disimpan !');
+		// 	redirect('admin/mahasiswa');
+		// }else{
+		// 	// echo "Gagal";
+		// 	$this->session->set_flashdata('info','Data Gagal Disimpan !');
 			redirect('admin/mahasiswa');
-		}else{
-			// echo "Gagal";
-			$this->session->set_flashdata('info','Data Gagal Disimpan !');
-			redirect('admin/mahasiswa');
-		}
+		// }
 		// var_dump($objek);
 	}
-	
+	public function hapus($nim)
+	{
+		$this->mahasiswa_model->remove($nim);
+		redirect('admin/mahasiswa','refresh');
+
+	}
+	public function edit($nim)
+	{
+		$data['judul'] = ' mahasiswa';
+		$data['sub_judul'] = 'Edit tambah mahasiswa';
+		$data['halaman'] = 'admin/v_mahasiswa_edit';
+
+		$data['isi_data'] =$this->mahasiswa_model-> get_id($nim);
+		$this->load->view('admin/v_template', $data);
+		
+	}
+	public function proses_edit()
+	{
+		$id = $this->input->post('nim');
+		$obj = array(
+			'nama_mahasiswa' => $this->input->post('nama_mahasiswa'),
+			'program_studi' =>$this->input->post('program_studi')
+			);
+		$this->mahasiswa_model->update($id,$obj);
+
+		redirect('admin/mahasiswa','refresh');
+
+	}
 
 }
 

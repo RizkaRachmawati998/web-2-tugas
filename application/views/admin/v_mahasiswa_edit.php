@@ -22,7 +22,8 @@
               </select>
             </div>
             <div class="form-group">
-              <button class="btn btn-primary" type="submit">Simpan</button>
+            <input type="submit" name="submit" value="simpan" class="btn btn-success">
+            <a href="<?php echo site_url('admin/mahasiswa'); ?>" class="btn btn-danger">Batal</a>
             </div>
           </form> 
           </div>

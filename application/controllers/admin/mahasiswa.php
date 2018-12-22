@@ -34,7 +34,7 @@ class mahasiswa extends CI_Controller
 		$obj = array(
 			'nim' => $this->input->post('nim'),
 			'nama_mahasiswa' => $this->input->post('nama_mahasiswa'),
-			'program_studi' =>$this->input->post('nama_mahasiswa'),
+			'program_studi' =>$this->input->post('program_studi')
 			);
 		$this->mahasiswa_model->create($obj);
 		// if ($this->mahasiswa_model->create($obj)) {
